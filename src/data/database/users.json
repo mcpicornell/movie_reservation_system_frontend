@@ -1,0 +1,130 @@
+[
+    {
+      "id": "user1",
+      "name": "Thomas Anderson",
+      "nickname": "neo",
+      "email": "neo@neo.com",
+      "password": "neo",
+      "profilePicture": "https://i.pinimg.com/236x/31/e1/b0/31e1b00743eaeff77c7145ef403572fb--fiction-movies-science-fiction.jpg",
+      "reviews": [
+        {
+          "id": "review1",
+          "company": "company1",
+          "rating": 4,
+          "reviewer": "user1",
+          "title": "Great product",
+          "text": "I loved using their product. Highly recommended.",
+          "date": "2023-07-31T12:34:56Z",
+          "likes": 5,
+          "dislikes": 1
+        },
+        {
+          "id": "review2",
+          "company": "company2",
+          "rating": 3,
+          "reviewer": "user1",
+          "title": "Good service",
+          "text": "Their service was decent. Could be improved.",
+          "date": "2023-07-30T10:00:00Z",
+          "likes": 5,
+          "dislikes": 1
+        }
+      ]
+    },
+    {
+      "id": "user2",
+      "name": "Carrie-Anne Moss",
+      "nickname": "Trinity",
+      "email": "trinityh@trinityh.com",
+      "password": "secret123",
+      "profilePicture": "https://smoda.elpais.com/wp-content/uploads/2021/12/matrix-1200x702.jpeg",
+      "reviews": [
+        {
+          "id": "review3",
+          "company": "company1",
+          "rating": 5,
+          "reviewer": "user2",
+          "title": "Amazing product",
+          "text": "The product exceeded my expectations. Absolutely loved it!",
+          "date": "2023-07-29T15:45:00Z",
+          "likes": 5,
+          "dislikes": 1
+        },
+        {
+          "id": "review4",
+          "company": "company3",
+          "rating": 2,
+          "reviewer": "user2",
+          "title": "Disappointing experience",
+          "text": "Not satisfied with their service. Needs improvement.",
+          "date": "2023-07-28T09:30:00Z",
+          "likes": 5,
+          "dislikes": 1
+        }
+      ]
+    },
+    {
+      "id": "user3",
+      "name": "Laurence Fishburne",
+      "email": "morpheus@morpheus.com",
+      "nickname": "morpheus",
+      "password": "password123",
+      "profilePicture": "https://www.looper.com/img/gallery/heres-why-we-didnt-see-laurence-fishburnes-morpheus-in-the-matrix-resurrections/intro-1640184659.jpg",
+      "reviews": [
+        {
+          "id": "review3",
+          "company": "company1",
+          "rating": 4,
+          "reviewer": "user3",
+          "title": "Great product",
+          "text": "I loved using their product. Highly recommended.",
+          "date": "2023-07-31T12:34:56Z",
+          "likes": 5,
+          "dislikes": 1
+        },
+        {
+          "id": "review2",
+          "company": "company2",
+          "rating": 3,
+          "reviewer": "user1",
+          "title": "Good service",
+          "text": "Their service was decent. Could be improved.",
+          "date": "2023-07-30T10:00:00Z",
+          "likes": 5,
+          "dislikes": 1
+        }
+      ]
+    },
+    {
+      "id": "user4",
+      "name": "Jada Pinkett Smith",
+      "nickname": "niobe",
+      "email": "niobe@niobe.com",
+      "password": "secret123",
+      "profilePicture": "https://upload.wikimedia.org/wikipedia/en/4/44/MatrixNiobe.jpg",
+      "reviews": [
+        {
+          "id": "review3",
+          "company": "company1",
+          "rating": 5,
+          "reviewer": "user4",
+          "title": "Amazing product",
+          "text": "The product exceeded my expectations. Absolutely loved it!",
+          "date": "2023-07-29T15:45:00Z",
+          "likes": 5,
+          "dislikes": 1
+        },
+        {
+          "id": "review4",
+          "company": "company3",
+          "rating": 2,
+          "reviewer": "user2",
+          "title": "Disappointing experience",
+          "text": "Not satisfied with their service. Needs improvement.",
+          "date": "2023-07-28T09:30:00Z",
+          "likes": 5,
+          "dislikes": 1
+        }
+      ]
+    }
+  ]

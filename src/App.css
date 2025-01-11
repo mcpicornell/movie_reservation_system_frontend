@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital@0;1&family=Work+Sans:wght@500;800&display=swap');
+
+@font-face {
+  font-family: "Poppins";   
+  src: local("Poppins"),
+    url("./fonts/poppins/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSans";   
+  src: local("NotoSans"),
+    url("./fonts/notoSans/NotoSans-Regular.ttf") format("truetype");
+}
+
+body{
+  margin: 0px;
+  padding: 0px;
+  background-color: #F8F8F8;
+  font-family: 'Poppins';
+}
+input:focus {
+  outline:none;
+}
+textarea:focus {
+  outline:none;
+}
