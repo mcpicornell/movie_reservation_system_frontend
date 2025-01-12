@@ -3,12 +3,11 @@ import styled from "styled-components";
 import {HiMail} from "react-icons/hi";
 import {IoMdLock} from "react-icons/io";
 import {NavLink, useNavigate} from "react-router-dom";
-import DualNavigation from "../components/DualNavigation";
 import React, {useEffect, useState} from "react";
 import {loginCreateAccessToken} from "../features/auth/fetchAuth";
 import {fetchMyUser} from "../features/users/fetchUsers";
 
-const LoginUserPage = () => {
+const LoginPage = () => {
     const nav = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -16,11 +15,8 @@ const LoginUserPage = () => {
     const [user, setUser] = useState();
 
     useEffect(() => {
-        if (loginResponse && loginResponse.status_code === 200) {
-            fetchMyUser(setUser)
-        }
-        if (user) {
-            nav(`/profile/${user.id}`)
+        if (loginResponse && loginResponse.status === 200) {
+            nav(`/`)
         }
     }, [loginResponse, user]);
 
@@ -34,7 +30,8 @@ const LoginUserPage = () => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        loginCreateAccessToken({email: email, username: email, password: password}, setLoginResponse)
+
+        loginCreateAccessToken({username: email, password: password}, setLoginResponse)
     };
 
     return (
@@ -67,7 +64,7 @@ const LoginUserPage = () => {
         </LoginForm>
     );
 };
-export default LoginUserPage;
+export default LoginPage;
 
 export const LoginForm = styled.form`
     border-radius: 24px;

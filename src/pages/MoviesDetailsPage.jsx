@@ -4,7 +4,7 @@ import {MdLocationOn} from "react-icons/md";
 import {BsFillTelephoneFill} from "react-icons/bs";
 import {HiMail} from "react-icons/hi";
 import {AiOutlineUser} from "react-icons/ai";
-import {ButtonLogin} from "./LoginUserPage";
+import {ButtonLogin} from "./LoginPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MoviesDetailsPage = () => {

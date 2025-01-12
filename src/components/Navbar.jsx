@@ -4,7 +4,6 @@ import {FaBars} from "react-icons/fa";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {isLoggedIn} from "./PrivateRoute";
-import {logout} from "../features/login/login";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,19 +27,13 @@ const Navbar = () => {
     const routeProfile = navToProfile(profileData);
 
     const navToLogin = () => {
-        if (profileData !== null) {
-            const parsedData = JSON.parse(profileData);
-            if (parsedData.profile === "company") {
-                return nav("/login-hotel");
-            }
-            return nav("/login");
-        }
         return nav("/login");
     }
-    const logOut = () => {
-        logout()
-        localStorage.removeItem("auth");
-        localStorage.removeItem("profile");
+
+    const logout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        nav("login")
     }
 
     const LogIcon = () => {
@@ -59,7 +52,7 @@ const Navbar = () => {
             <>
                 <AiOutlineLogoutStyled onClick={() => {
                     closeMenu();
-                    logOut();
+                    logout();
                     navToLogin();
                 }}/>
             </>

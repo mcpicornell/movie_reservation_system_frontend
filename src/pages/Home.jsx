@@ -1,29 +1,35 @@
 import styled from "styled-components";
+import {useEffect, useState} from "react";
+import {fetchShowTimes} from "../features/showTime/showTime";
+import MovieCard from "../components/MovieCard";
 
 const Home = () => {
 
-    // const [reviews, setReviews] = useState(null);
+    const [showTimes, setShowTimes] = useState();
+
+    useEffect(() => {
+        if (!showTimes) {
+            fetchShowTimes(setShowTimes)
+        }
+    }, [showTimes]);
     //
-    // useEffect(() => {
-    //     if (!reviews) {
-    //         fetchReviews(setReviews)
-    //     }
-    // }, [reviews]);
-    //
-    // let content = [];
-    // if (reviews) {
-    //     const reviewDataCopy = [...reviews];
-    //
-    //     reviewDataCopy.forEach((review) => {
-    //         if (review) {
-    //             content.push(<Review key={review.id} review={review}/>);
-    //         }
-    //     });
-    // }
+    let content = [];
+    if (showTimes) {
+        console.log(showTimes);
+        const showTimesCopy = [...showTimes.results];
+
+        showTimesCopy.forEach((showTime) => {
+            if (showTime) {
+                content.push(<MovieCard key={showTime.id} showTime={showTime}/>);
+            }
+        });
+    }
 
     return (
         <>
-            {/*<ReviewsContainer key="reviewsContainer">{content}</ReviewsContainer>*/}
+            <div>
+                {content}
+            </div>
         </>
     );
 };

@@ -5,96 +5,64 @@ import {BiImageAdd, BiSolidUser} from "react-icons/bi";
 import {GiSpiderMask} from "react-icons/gi";
 import {IoMdLock} from "react-icons/io";
 import {NavLink, useNavigate} from "react-router-dom";
-import DualNavigation from "../components/DualNavigation";
 import {useEffect, useState} from "react";
 import {createUser} from "../features/users/fetchUsers";
+import {loginCreateAccessToken} from "../features/auth/fetchAuth";
 
 const CreateUserPage = () => {
 
     const navigate = useNavigate();
-    const [avatar, setAvatar] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [password2, setPassword2] = useState(null);
-    const [nickname, setNickname] = useState(null);
-    const [name, setName] = useState(null);
-    const [reviewer, setReviewer] = useState(null);
-    const [response, setResponse] = useState({});
+    const [user, setUser] = useState(null);
+    const [userBody, setUserBody] = useState({});
+    const [loginResponse, setLoginResponse] = useState({});
+
 
     // TODO: develop logic to handel error to create user
 
     useEffect(() => {
-    if (reviewer) {
-        localStorage.setItem("auth", "true");
-        const obj = JSON.stringify({profile: "user", id: reviewer.id});
-        localStorage.setItem("profile", obj);
-        navigate(`/profile/${reviewer.id}`)
-    }
-    if(response){
-        alert(response.toString() )
-        setResponse(null);
-    }
-}, [reviewer, response]);
+        if (user) {
+            loginCreateAccessToken(userBody, setLoginResponse)
+        }
+        if (loginResponse && loginResponse.ok) {
+            navigate("/")
+        }
+    }, [user, loginResponse]);
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         if (password !== password2) {
             alert("Password field do not match! Try again :)");
         } else {
             const body = {
-                avatar: avatar,
+                username: email,
                 email: email,
                 password: password,
-                nickname: nickname,
-                name: name
             }
-            createUser(body, setReviewer, setResponse)
+            setUserBody({username: email, password: password})
+            console.log(body)
+            createUser(body, setUser)
         }
     }
 
-    const firstRoute = {
-        routeNav: "/create-user",
-        routeString: "Create User"
-    }
-
-    const secondRoute = {
-        routeNav: "/create-hotel",
-        routeString: "Create Hotel"
-    }
+    // const firstRoute = {
+    //     routeNav: "/create-user",
+    //     routeString: "Create User"
+    // }
+    //
+    // const secondRoute = {
+    //     routeNav: "/create-hotel",
+    //     routeString: "Create Hotel"
+    // }
 
     return (
         <LoginForm>
-            <DualNavigation firstRoute={firstRoute} secondRoute={secondRoute}/>
             <Logo/>
             <ContainerText>
                 <Title>Join our community!</Title>
                 <SubTitle>Your reviews makes the difference</SubTitle>
-                <InputContainer>
-                    <BiImageAddStyled/>
-                    <InputForm
-                        placeholder="Avatar URL"
-                        type="text"
-                        required
-                        onChange={(e) => setAvatar(e.target.value)}
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <BiSolidUserStyled/>
-                    <InputForm
-                        placeholder="Name"
-                        type="text"
-                        required
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <GiSpiderMaskStyled/>
-                    <InputForm
-                        placeholder="Nickname"
-                        type="text"
-                        required
-                        onChange={(e) => setNickname(e.target.value)}
-                    />
-                </InputContainer>
                 <InputContainer>
                     <HiMailStyled/>
                     <InputForm
@@ -131,7 +99,8 @@ const CreateUserPage = () => {
                 </NavLinkStyled>
             </ContainerCreateAccount>
         </LoginForm>
-    );
+    )
+        ;
 };
 export default CreateUserPage;
 

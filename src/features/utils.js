@@ -6,7 +6,8 @@ const apiBaseUrl = process.env.REACT_APP_BACKEND_API_URL;
 export const request = async (
     method,
     endpoint,
-    body
+    body = null,
+    includeToken = true
 ) => {
 
     if (!methods.includes(method)) {
@@ -23,9 +24,12 @@ export const request = async (
         method,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         },
     };
+
+    if (includeToken) {
+        options.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`;
+    }
 
     if (body && (method === 'POST' || method === 'PATCH')) {
         options.body = JSON.stringify(body);

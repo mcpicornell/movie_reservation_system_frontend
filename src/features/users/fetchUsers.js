@@ -8,12 +8,17 @@ export const fetchMyUser = async (setState) => {
     }
 }
 
-export const createUser = async (body, setState, setResponse) => {
+export const createUser = async (body, setState) => {
     try {
-        const response = await request("POST", `/auth/users/`, body)
+        const response = await request(
+            "POST",
+            `/auth/users/`,
+            body,
+            false
+        )
         const data = await response.json()
         setState(data)
     } catch (error) {
-        setResponse(error)
+        console.log(error)
     }
 }

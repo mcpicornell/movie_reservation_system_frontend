@@ -15,21 +15,21 @@ const MovieCard = ({showTime}) => {
     return (
         <CardContainer onClick={navToCompaniesDetailsOnClick}>
             <MovieName>{showTime.movie.title}</MovieName>
-            <MoviePicture src={showTime.movie.picture_url}/>
+            <MoviePicture src={showTime.movie.poster_url}/>
             <StarRating rating={showTime.movie.rating}/>
             <ContainerBottom>
-                <ContainerUsers>
-                    <UserPicture
-                        src={showTime.last_reviewer.avatar}
-                        alt="user"
-                    />
-                </ContainerUsers>
-                <ContainerInfoReviews>
-                    <CommentSvg/>
-                    <CommentInfo>
-                        {showTime.reviews}
-                    </CommentInfo>
-                </ContainerInfoReviews>
+                {/*<ContainerUsers>*/}
+                {/*    <UserPicture*/}
+                {/*        src={showTime.last_reviewer.avatar}*/}
+                {/*        alt="user"*/}
+                {/*    />*/}
+                {/*</ContainerUsers>*/}
+                {/*<ContainerInfoReviews>*/}
+                {/*    <CommentSvg/>*/}
+                {/*    <CommentInfo>*/}
+                {/*        {showTime.reviews}*/}
+                {/*    </CommentInfo>*/}
+                {/*</ContainerInfoReviews>*/}
             </ContainerBottom>
         </CardContainer>
     );
@@ -53,7 +53,7 @@ const CardContainer = styled.div`
 
 const MoviePicture = styled.img`
     border-radius: 12px;
-    width: 90%;
+    width: 200px;
     margin-bottom: 25px;
 `;
 
