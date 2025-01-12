@@ -47,15 +47,6 @@ const CreateUserPage = () => {
         }
     }
 
-    // const firstRoute = {
-    //     routeNav: "/create-user",
-    //     routeString: "Create User"
-    // }
-    //
-    // const secondRoute = {
-    //     routeNav: "/create-hotel",
-    //     routeString: "Create Hotel"
-    // }
 
     return (
         <LoginForm>

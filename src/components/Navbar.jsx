@@ -70,13 +70,13 @@ const Navbar = () => {
             </LogoContainer>
             <UlElementsContainer isOpen={isOpen}>
                 <LinkList to="/" onClick={closeMenu}>
-                    <LiElement>Last Reviews</LiElement>
+                    <LiElement>Show Times</LiElement>
                 </LinkList>
                 <LinkList to="/about-us" onClick={closeMenu}>
                     <LiElement>About Us</LiElement>
                 </LinkList>
-                <LinkList to="/hotels" onClick={closeMenu}>
-                    <LiElement>Hotels</LiElement>
+                <LinkList to="/movies" onClick={closeMenu}>
+                    <LiElement>Movies</LiElement>
                 </LinkList>
                 <LinkList to={routeProfile} onClick={closeMenu}>
                     <LiElement>Profile</LiElement>

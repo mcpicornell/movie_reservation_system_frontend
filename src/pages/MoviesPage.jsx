@@ -1,41 +1,47 @@
 import styled from 'styled-components'
+import {useEffect, useState} from "react";
+import {fetchMovies} from "../features/movies/movies";
+import MovieCard from "../components/MovieCard";
 
-const Reviews = () => {
-  // const [reviews, setReviews] = useState([])
-  //
-  //
-  // useEffect(() => {
-  //   if(!reviews){
-  //     setReviews(fetchReviews())
-  //   }
-  // },[reviews])
-  // let content = [];
-  // if(reviews){
-  //   const reviewDataCopy = [...reviews]
-  //   const reviewDataOrdered = reviewDataCopy.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  //   reviewDataOrdered.forEach((reviewObj) => {
-  //     if(reviewObj){
-  //       content.push(
-  //         <>
-  //           <Review key={reviewObj.id} reviewObj={reviewObj} />
-  //         </>
-  //       )
-  //     }
-  //   })
-  // }
+const MoviesPage = () => {
+
+    const [movies, setMovies] = useState();
+
+    useEffect(() => {
+        if (!movies) {
+            fetchMovies(setMovies)
+        }
+    }, [movies]);
+    //
+    let content = [];
+    if (movies) {
+        const moviesCopy = [...movies.results];
+
+        moviesCopy.forEach((movie) => {
+            if (movie) {
+                content.push(<MovieCard key={movie.id} movie={movie}/>);
+            }
+        });
+    }
+
+
     return (
-      // <ReviewsContainer>
-      //   {content}
-      // </ReviewsContainer>
-        <></>
+        <MovieCardContainer key="movieCardContainer">
+            {content}
+        </MovieCardContainer>
     );
-}
+};
+export default MoviesPage;
 
-const ReviewsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  margin: 0 auto;
-`
-export default Reviews;
+const MovieCardContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
   

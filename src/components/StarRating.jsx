@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StarRating = ({ rating }) => {
   const ratingNumber = Number(rating)
-  const totalStars = 5;
+  const totalStars = 10;
   const fullStars = Math.floor(ratingNumber);
   const hasHalfStar = rating % 1 !== 0;
 

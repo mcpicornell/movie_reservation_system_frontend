@@ -6,6 +6,8 @@ import "./App.css";
 import {PrivateRoute} from "./components/PrivateRoute";
 import CreateUserPage from "./pages/CreateUserPage";
 import ShowTimePage from "./pages/ShowTimePage";
+import MoviesPage from "./pages/MoviesPage";
+import MoviesDetailsPage from "./pages/MoviesDetailsPage";
 
 function App() {
 
@@ -19,8 +21,8 @@ function App() {
                 <Route element={<Layout/>}>
                     {/* Ruta pública de login */}
                     <Route path="/" element={<PrivateRoute><ShowTimePage key="home"/></PrivateRoute>}/>
-                    {/*<Route path="/hotels" element={<PrivateRoute><ShowTimePage key="companiesPage" /></PrivateRoute>} />*/}
-                    {/*<Route path="/hotels/:id" element={<PrivateRoute><MoviesDetailsPage key="companiesDetailsPage" /></PrivateRoute>} />*/}
+                    <Route path="/movies" element={<PrivateRoute><MoviesPage key="moviesPage" /></PrivateRoute>} />
+                    <Route path="/movies/:id" element={<PrivateRoute><MoviesDetailsPage key="companiesDetailsPage" /></PrivateRoute>} />
                     {/*<Route path="/reviews" element={<PrivateRoute><LastReviews key="lastReviews" /></PrivateRoute>} />*/}
                     {/*<Route path="/about-us" element={<PrivateRoute><AboutUsPage key="aboutUsPage" /></PrivateRoute>} />*/}
 

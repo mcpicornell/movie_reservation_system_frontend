@@ -15,12 +15,11 @@ const ShowTimePage = () => {
     //
     let content = [];
     if (showTimes) {
-        console.log(showTimes);
         const showTimesCopy = [...showTimes.results];
 
         showTimesCopy.forEach((showTime) => {
             if (showTime) {
-                content.push(<MovieCard key={showTime.id} showTime={showTime}/>);
+                content.push(<MovieCard key={showTime.movie.id} movie={showTime.movie}/>);
             }
         });
     }

@@ -6,140 +6,56 @@ import {HiMail} from "react-icons/hi";
 import {AiOutlineUser} from "react-icons/ai";
 import {ButtonLogin} from "./LoginPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Spinner} from "react-bootstrap";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import StarRating from "../components/StarRating";
+import {fetchMovieById} from "../features/movies/movies";
+import {MoviePicture} from "../components/MovieCard";
+import {findAllByDisplayValue} from "@testing-library/react";
 
 const MoviesDetailsPage = () => {
-    // const {id} = useParams();
-    // const [company, setCompany] = useState(null);
-    // const [loading, setLoading] = useState(true);
-    // const [rating, setRating] = useState(0);
-    //
-    //
-    // useEffect(() => {
-    //     if (!company) {
-    //         setLoading(true);
-    //         fetchCompanyById(id, setCompany)
-    //     }
-    //     if (loading && company) {
-    //         setLoading(false);
-    //     }
-    // }, [company, loading]);
-    // if (company && !loading) {
-    //     const isLogged = isLoggedUserOrCompany("company");
-    //
-    //     const handleRatingChange = (newRating) => {
-    //         setRating(newRating);
-    //     };
+    const {id} = useParams();
+    const [movie, setMovie] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-        // const numberReviewsByRating = (number) => {
-        //     let numberReviews = 0;
-        //     for (let i = 0; i < company.reviews.length; i++) {
-        //         if (company.reviews[i].rating === number) {
-        //             numberReviews++;
-        //         }
-        //     }
-        //     return numberReviews;
-        // };
-
-        // const numberReviews = getNumberElementsInArray(company.reviews);
-        // const reviewString = checkIfSingular(
-        //     getNumberElementsInArray(company.reviews)
-        // );
-        //
-        // let reviews = [];
-        // let cardRating = [];
-        //
-        // if (company.reviews) {
-        //     const reviewData = [...company.reviews];
-        //     // const reviewDataOrdered = reviewData.sort(
-        //     //     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        //     // );
-        //     reviewData.forEach((review) => {
-        //         if (review) {
-        //             reviews.push(<Review key={review.id} review={review}/>);
-        //         }
-        //     });
-        //     for (let i = 5; i > 0; i--) {
-        //         cardRating.push(
-        //             <CardStarRating>
-        //                 <StarRating rating={i}/>
-        //                 <ReviewSpan>
-        //                     {company.total_reviews}{" "}
-        //                     {checkIfSingular(company.total_reviews)}
-        //                 </ReviewSpan>
-        //             </CardStarRating>
-        //         );
-        //     }
-        // }
-
-
+    useEffect(() => {
+        if (!movie) {
+            setLoading(true);
+            fetchMovieById(id, setMovie)
+        }
+        console.log(movie)
+        if (loading && movie) {
+            setLoading(false);
+        }
+    }, [movie, loading]);
+    if (!movie && loading) {
         return (
-            // <PageContainer>
-            //     <HeaderContainer>
-            //         <Header>
-            //             <Title>{company.name}</Title>
-            //             <StarInfoContainer>
-            //                 <StarRating rating={company.rating}/>
-            //                 <ReviewSpan>
-            //                     {numberReviews} {reviewString}
-            //                 </ReviewSpan>
-            //             </StarInfoContainer>
-            //         </Header>
-            //         <SubHeader>
-            //             <SubHeaderElementContainer>
-            //                 <MdLocationOnStyled/>
-            //                 <SpanGrey>{company.address}</SpanGrey>
-            //             </SubHeaderElementContainer>
-            //             <SubHeaderElementContainer>
-            //                 <BsFillTelephoneFillStyled/>
-            //                 <SpanGrey>{addSpacesToPhoneNumber(company.phone)}</SpanGrey>
-            //             </SubHeaderElementContainer>
-            //             <SubHeaderElementContainer>
-            //                 <HiMailStyled/>
-            //                 <SpanGrey>{company.email}</SpanGrey>
-            //             </SubHeaderElementContainer>
-            //         </SubHeader>
-            //     </HeaderContainer>
-            //     <SliderContainer>
-            //         <Slider company={company}/>
-            //     </SliderContainer>
-            //     <CardsContainer>
-            //         <CardReviewContainer>{cardRating}</CardReviewContainer>
-            //         <CardInfoContainer>
-            //             <SpanCardTitle>{company.name}</SpanCardTitle>
-            //             <SpanCardDescription>{company.description}</SpanCardDescription>
-            //             <CardInfoContactContainer>
-            //                 <ContactContainer>
-            //                     <HiMail/>
-            //                     <SpanGreyStyled>{company.email}</SpanGreyStyled>
-            //                 </ContactContainer>
-            //                 <ContactContainer>
-            //                     <BsFillTelephoneFill/>
-            //                     <SpanGreyStyled>{addSpacesToPhoneNumber(company.phone)}</SpanGreyStyled>
-            //                 </ContactContainer>
-            //                 <ContactContainer>
-            //                     <MdLocationOn/>
-            //                     <SpanGreyStyled>{company.address}</SpanGreyStyled>
-            //                 </ContactContainer>
-            //             </CardInfoContactContainer>
-            //         </CardInfoContainer>
-            //     </CardsContainer>
-            //     <CommentsContainer>
-            //         <MainCommentContainer isLogged={isLogged}>
-            //             <CommentAndStarsContainer>
-            //                 <AiOutlineUserStyled/>
-            //                 <HoverStarRating onChangeRating={handleRatingChange}/>
-            //             </CommentAndStarsContainer>
-            //             <CommentInput placeholder="Write a review..."/>
-            //             <ButtonComment>Comment</ButtonComment>
-            //         </MainCommentContainer>
-            //         {reviews}
-            //     </CommentsContainer>
-            // </PageContainer>
-            <></>
+            <div>
+                <Spinner/>
+            </div>
         )
+    } else if (movie && !loading) {
+        return (
+            <PageContainer>
+                <HeaderContainer>
+                    <Header>
+                        <Title>{movie.title}</Title>
+                        <StarInfoContainer>
+                            <StarRating rating={movie.rating}/>
+                        </StarInfoContainer>
+                    </Header>
+                </HeaderContainer>
+                <CardsContainer>
+                    <MoviePicture src={movie.poster_url}/>
+                    <SpanCardTitle>{movie.title}</SpanCardTitle>
+                    <SpanCardDescription>{movie.description}</SpanCardDescription>
+                </CardsContainer>
+            </PageContainer>
 
-
-};
+        )
+    }
+}
 export default MoviesDetailsPage;
 
 const PageContainer = styled.div`
